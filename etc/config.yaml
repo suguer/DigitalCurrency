@@ -32,3 +32,12 @@ log:
     max_age: 30
     # 保留文件数
     max_backups: 10
+    
+Tron:
+  Enable: 1
+  ApiKey:
+  Node: https://api.trongrid.io
+  Contract:
+    - Token: USDT
+      Address: 41a614f803b6fd780986a42c78ec9c7f77e6ded13c
+      Decimal: 6

@@ -21,7 +21,7 @@ func (h *hexError) Error() string {
 func BytesToHexString(bytes []byte) string {
 	encode := make([]byte, len(bytes)*2)
 	hex.Encode(encode, bytes)
-	return "0x" + string(encode)
+	return string(encode)
 }
 
 // HexStringToBytes hex string as bytes

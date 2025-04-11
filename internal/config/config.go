@@ -6,6 +6,42 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+type EthConfig struct {
+	Chain    string
+	Enable   int
+	ApiKey   string
+	Node     string
+	Contract []ContractConfig
+}
+type ContractConfig struct {
+	Token   string
+	Address string
+	Decimal int
+}
+
+func (c *EthConfig) ContractMap() map[string]ContractConfig {
+	m := make(map[string]ContractConfig)
+	for _, v := range c.Contract {
+		m[v.Address] = v
+	}
+	return m
+}
+
+type RedisConf struct {
+	Host     string
+	Port     int
+	Database int
+	Password string
+}
+type MysqlConf struct {
+	Host     string
+	Port     int
+	Database string
+	Username string
+	Password string
+	Charset  string
+}
+
 // Config 配置结构体
 type Config struct {
 	Server struct {
@@ -29,6 +65,9 @@ type Config struct {
 			MaxBackups int `yaml:"max_backups"`
 		} `yaml:"rotation"`
 	}
+	Tron  EthConfig
+	Redis RedisConf
+	Mysql MysqlConf
 }
 
 // Load 加载配置文件
